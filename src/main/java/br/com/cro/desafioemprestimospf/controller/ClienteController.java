@@ -1,17 +1,15 @@
 package br.com.cro.desafioemprestimospf.controller;
 
 import br.com.cro.desafioemprestimospf.dto.ClienteDto;
-import br.com.cro.desafioemprestimospf.dto.ContaDto;
 import br.com.cro.desafioemprestimospf.mapper.ClienteMapper;
 import br.com.cro.desafioemprestimospf.model.Cliente;
 import br.com.cro.desafioemprestimospf.repository.ClienteRepository;
 import br.com.cro.desafioemprestimospf.service.ClienteService;
-import br.com.cro.desafioemprestimospf.service.ContaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
@@ -20,10 +18,9 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1")
 public class ClienteController {
-
+    @Autowired
     private final ClienteService clienteService;
     private final ClienteMapper clienteMapper;
-
     private final ClienteRepository clienteRepository;
 
     @PostMapping("/cliente")
@@ -32,23 +29,36 @@ public class ClienteController {
                 clienteMapper.dtoToModel(clienteDto)),HttpStatus.CREATED);
     }
 
-//    @GetMapping("/cliente")
-//    public ResponseEntity<List<ClienteDto>> findAll() {
-//        return new ResponseEntity<>(clienteMapper.modelsToDtos(clienteRepository.findAll()), HttpStatus.OK);
-//    }
+    @GetMapping("/cliente")
+    public ResponseEntity<List<ClienteDto>> findAll() {
+        return new ResponseEntity<>(clienteMapper.modelsToDtos(clienteRepository.findAll()), HttpStatus.OK);
+    }
 
+    @GetMapping("/cliente/{id}")
+    public ResponseEntity<ClienteDto> findById(@PathVariable(value = "id") UUID id) {
+        return new ResponseEntity<>(clienteMapper.modelToDto(clienteRepository.findById(id).get()), HttpStatus.OK);
+    }
 
+    @DeleteMapping("/cliente/{id}")
+    public void delete(@PathVariable UUID id) {
+        clienteService.delete(id);
+    }
+
+//    @DeleteMapping("/cliente/{id}")
+//    public ResponseEntity<Void> deleteById(@PathVariable(value = "id") UUID id) {
+//        ClienteDto clienteDto = clienteMapper.modelToDto(clienteRepository.findById(id).get());
+//        clienteRepository.deleteById(clienteDto.getId());
+//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 //
-
-
-
-
-//    @PutMapping("{clienteId}")
-//    public ResponseEntity<ClienteResponse> update(@Valid @RequestBody ClienteCadastroRequest clienteCadastroRequest, @PathVariable UUID clienteId) {
-//        Cliente cliente = clienteService.update(clienteId, clienteCadastroRequest);
-//        ClienteResponse clienteResponse = clienteMapper.toResponse(cliente);
-//        return ResponseEntity.status(HttpStatus.OK).body(clienteResponse);
 //    }
 
+
+
+//    @PutMapping("/cliente")
+//    public ResponseEntity<ClienteDto> update(@Valid @RequestBody UUID clienteId, ClienteDto clienteDto) {
+//        Cliente cliente = clienteService.update(clienteId, clienteDto);
+//        ClienteDto clienteDt2= clienteMapper.modelToDto(cliente);
+//        return ResponseEntity.status(HttpStatus.OK).body(clienteDto);
+//    }
 
 }

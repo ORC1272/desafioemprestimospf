@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -18,7 +17,6 @@ public class Conta {
     @Column(name = "conta_id")
     private UUID contaId;
 
-    private Instant dataCadastro;
     private String agenciaNumero;
 
     @NotBlank(message = "Número da conta não informado")
@@ -26,6 +24,12 @@ public class Conta {
 
     @NotBlank(message = "Digito da conta não informado")
     private String numeroDigitoConta;
+
+    private SegmentoConta segmentoConta;
+
+    private TipoLimite tipoLimite;
+
+    private TipoBloqueio tipoBloqueio;
 
 //    @ManyToOne
 //    @JoinColumn(name = "tipo_conta_id")

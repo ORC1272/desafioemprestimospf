@@ -1,5 +1,7 @@
 package br.com.cro.desafioemprestimospf.dto;
 
+import br.com.cro.desafioemprestimospf.model.Conta;
+import br.com.cro.desafioemprestimospf.model.TipoConta;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,12 +15,13 @@ import java.util.UUID;
 public class ClienteDto {
 
 
-    private UUID clienteId;
-    private LocalDateTime dataCadastro;
+    private UUID id;
     private String cpf;
     private String email;
     private String nomeCompleto;
     private String telefone;
+    private TipoConta tipoConta;
+
 
 
 

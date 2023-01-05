@@ -6,9 +6,6 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.UUID;
 @Getter
 @Setter
@@ -16,10 +13,8 @@ import java.util.UUID;
 public class Cliente {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-//    @Column(name = "cliente_id")
-    private UUID clienteId;
-
-    private LocalDateTime dataCadastro=LocalDateTime.now();
+    @Column(name = "cliente_id")
+    private UUID id;
 
     @CPF(message = "Número CPF inválido")
     @NotBlank(message = "CPF não informado")
@@ -34,9 +29,12 @@ public class Cliente {
 
     private String telefone;
 
-    @ManyToOne
-    @JoinColumn(name = "conta_id")
-    private Conta conta;
+    private TipoConta tipoConta;
+
+
+//    @ManyToOne
+//    @JoinColumn(name = "conta_id")
+//    private Conta conta;
 
 
 //    public Cliente(UUID clienteId, String cpf, String email, String nomeCompleto, String telefone, Conta conta) {

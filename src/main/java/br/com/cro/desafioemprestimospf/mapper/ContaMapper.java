@@ -16,8 +16,7 @@ public interface ContaMapper {
 
     ContaMapper INSTANCE = Mappers.getMapper(ContaMapper.class);
     ContaDto modelToDto(Conta conta);
-
-//    List<ContaDto> modelsToDtos(List<Conta> conta);
+    List<ContaDto> modelsToDtos(List<Conta> conta);
     @InheritInverseConfiguration
     Conta dtoToModel(ContaDto contaDto);
 

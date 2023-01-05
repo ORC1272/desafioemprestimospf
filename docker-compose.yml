@@ -1,42 +1,25 @@
-version: '3.9'
+version: '3'
 services:
-  emprestimos:
+  emprestimospf:
     build:
       context: ./
       dockerfile: ./Dockerfile
-    image: emprestimos
+    image: emprestimospf/api
     restart: always
     ports:
       - '8081:8080'
       - '5505:5505'
     environment:
-      DB_HOST: jdbc:mysql://database:3306/emprestimos?createDatabaseIfNotExist=true
+      DB_HOST: jdbc:mysql://database:3308/emprestimospf?createDatabaseIfNotExist=true
     depends_on:
       - database
   database:
-    image: mysql:5.5
-    restart: always
-    container_name: database
-    environment:
-      MYSQL_USER: "user"
-      MYSQL_PASSWORD: "secret"
-      MYSQL_ROOT_PASSWORD: "secret"
-      MYSQL_DB: "emprestimos"
+    image: mysql:5.6
     ports:
-      # <Port exposed> : < MySQL Port running inside container>
-      - '3307:3306'
-    expose:
-      # Opens port 3306 on the container
-      - '3306'
-      # Where our data will be persisted
+      - '3308:3306'
+#    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: "emprestimos"
+      MYSQL_ROOT_PASSWORD: "secret"
     volumes:
-      - my-db:/var/lib/mysql
-# Names our volume
-volumes:
-  my-db:
-networks:
-  backend:
-    name: emprestimospf
-
-
-
+      - ./docker/volume_mysql:/var/lib/mysql

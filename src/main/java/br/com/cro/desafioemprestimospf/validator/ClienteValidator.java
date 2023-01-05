@@ -6,10 +6,10 @@ import java.util.UUID;
 @Component
 public class ClienteValidator {
 
-    public int validate (int clienteId) throws ClienteValidationException{
-        if(clienteId == -1){
+    public int validate (int id) throws ClienteValidationException{
+        if(id == -1){
             throw new ClienteValidationException("Valor invalido");
         }
-        return clienteId;
+        return id;
     }
 }
