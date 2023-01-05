@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.time.Instant;
 import java.util.UUID;
 
 @Getter
@@ -30,6 +29,13 @@ public class Conta {
     private TipoLimite tipoLimite;
 
     private TipoBloqueio tipoBloqueio;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="CLIENTE_ID")
+    private Cliente cliente;
+
+//    @OneToOne(mappedBy = "cliente")
+//    private Cliente cliente;
 
 //    @ManyToOne
 //    @JoinColumn(name = "tipo_conta_id")

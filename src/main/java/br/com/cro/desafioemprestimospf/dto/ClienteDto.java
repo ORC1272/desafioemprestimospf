@@ -1,16 +1,12 @@
 package br.com.cro.desafioemprestimospf.dto;
-
 import br.com.cro.desafioemprestimospf.model.Conta;
 import br.com.cro.desafioemprestimospf.model.TipoConta;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import org.springframework.stereotype.Component;
 
-import javax.persistence.Id;
-import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Component
 @Data
 public class ClienteDto {
 
@@ -21,7 +17,7 @@ public class ClienteDto {
     private String nomeCompleto;
     private String telefone;
     private TipoConta tipoConta;
-
+    private Conta conta;
 
 
 

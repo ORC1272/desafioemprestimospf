@@ -39,10 +39,11 @@ public class ClienteController {
         return new ResponseEntity<>(clienteMapper.modelToDto(clienteRepository.findById(id).get()), HttpStatus.OK);
     }
 
-    @DeleteMapping("/cliente/{id}")
-    public void delete(@PathVariable UUID id) {
-        clienteService.delete(id);
-    }
+//    @DeleteMapping("/id")
+//    public void delete(@PathVariable UUID clienteId) {
+//        clienteService.delete(clienteId);
+//    }
+
 
 //    @DeleteMapping("/cliente/{id}")
 //    public ResponseEntity<Void> deleteById(@PathVariable(value = "id") UUID id) {

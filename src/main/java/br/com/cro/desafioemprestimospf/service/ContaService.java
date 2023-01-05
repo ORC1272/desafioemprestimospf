@@ -1,6 +1,5 @@
 package br.com.cro.desafioemprestimospf.service;
 
-
 import br.com.cro.desafioemprestimospf.dto.ContaDto;
 import br.com.cro.desafioemprestimospf.exceptions.ItemNotExistsException;
 import br.com.cro.desafioemprestimospf.mapper.ContaMapper;
@@ -10,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
-
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +24,11 @@ public class ContaService {
         Conta conta = contaMapper.dtoToModel(contaDto);
         contaRepository.save(conta);
         return conta;
+
+    }
+
+    public List<Conta> findAll() {
+        return contaRepository.findAll();
     }
 
 //    @Override
@@ -51,16 +53,14 @@ public class ContaService {
 //        contaRepository.save(conta);
 //        return conta;
 //    }
+//
+//    public void delete(UUID contaId) {
+//        Conta conta = contaRepository.findById(contaId)
+//                .orElseThrow(() -> new ItemNotExistsException("Conta não encontrada!"));
+//        contaRepository.delete(conta);
+//    }
 
-    public void delete(UUID contaId) {
-        Conta conta = contaRepository.findById(contaId)
-                .orElseThrow(() -> new ItemNotExistsException("Conta não encontrada!"));
-        contaRepository.delete(conta);
-    }
 
-    public List<Conta> findAll() {
-        return contaRepository.findAll();
-    }
 
 
 

@@ -1,6 +1,6 @@
 package br.com.cro.desafioemprestimospf.controller;
 
-import br.com.cro.desafioemprestimospf.dto.ClienteDto;
+
 import br.com.cro.desafioemprestimospf.dto.ContaDto;
 import br.com.cro.desafioemprestimospf.mapper.ContaMapper;
 import br.com.cro.desafioemprestimospf.model.Conta;
@@ -23,7 +23,6 @@ public class ContaController {
 
     private final ContaService contaService;
     private final ContaMapper contaMapper;
-
     private final ContaRepository contaRepository;
 
     @PostMapping("/conta")

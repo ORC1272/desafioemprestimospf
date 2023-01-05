@@ -1,12 +1,16 @@
 package br.com.cro.desafioemprestimospf.dto;
 
+
+import br.com.cro.desafioemprestimospf.model.Cliente;
 import br.com.cro.desafioemprestimospf.model.SegmentoConta;
 import br.com.cro.desafioemprestimospf.model.TipoBloqueio;
 import br.com.cro.desafioemprestimospf.model.TipoLimite;
 import lombok.Data;
-import java.time.Instant;
+import org.springframework.stereotype.Component;
+
 import java.util.UUID;
 
+@Component
 @Data
 public class ContaDto {
 
@@ -18,5 +22,6 @@ public class ContaDto {
     private SegmentoConta segmentoConta;
     private TipoLimite tipoLimite;
     private TipoBloqueio tipoBloqueio;
+    private Cliente cliente;
 
 }

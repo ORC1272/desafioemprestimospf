@@ -14,7 +14,7 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @Column(name = "cliente_id")
-    private UUID id;
+    private UUID clienteId;
 
     @CPF(message = "Número CPF inválido")
     @NotBlank(message = "CPF não informado")
@@ -31,6 +31,23 @@ public class Cliente {
 
     private TipoConta tipoConta;
 
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="CONTA_ID")
+    private Conta conta;
+
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "CONTA_ID")
+//    private Conta conta;
+
+
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name="CONTA_ID")
+//    private Conta conta;
+//
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name="ALUNO_ID")
+//    private List<> notas;
 
 //    @ManyToOne
 //    @JoinColumn(name = "conta_id")
